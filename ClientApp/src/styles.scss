@@ -12,6 +12,7 @@ body {
   margin: 0px;
   height: 100%;
   width: 100%;
+  background-color:darken(#fff,8);
 }
 
 a {
@@ -51,4 +52,17 @@ a {
 //form fields
 textarea {
   resize: none !important;
+}
+
+//fixed
+
+
+main-content {
+  display: flex;
+  flex: 1;
+  margin: 2rem;
+
+  @media (max-width: 600px) {
+      flex-direction:column;
+  }
 }

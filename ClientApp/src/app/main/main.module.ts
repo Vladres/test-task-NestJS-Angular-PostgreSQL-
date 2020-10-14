@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ImagesListComponent } from './images-list/images-list.component';
-import { ImageCardComponent } from './image-card/image-card.component';
+import { MainContentComponent } from './main-content/main-content.component';
+import { MatCardModule } from '@angular/material/card';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   {
     path: '',
-    component: ImagesListComponent
+    component: MainContentComponent
   }
 ];
 
@@ -15,11 +17,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ImagesListComponent,
-    ImageCardComponent
+    MainContentComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    DragDropModule
   ],
   providers: []
 })

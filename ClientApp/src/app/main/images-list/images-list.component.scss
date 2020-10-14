@@ -1,0 +1,27 @@
+
+.list {
+  overflow-y: auto;
+}
+
+.image-card {
+  display: flex;
+  margin-bottom: 1.5rem;
+  box-shadow: darken(#fff,7) rgba(0,0,0,0.3);
+  background-color: #fff;
+  border-radius: 15px;
+
+  .card-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    .card-title{
+
+        font-size:2rem;
+    }
+  }
+
+  .card-image {
+    border-radius: 15px 0 0 15px;
+    max-width: 40%;
+  }
+}
