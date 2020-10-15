@@ -37,8 +37,14 @@ export class ItemController {
     }
 
     //Download photo by item id
+    @Get('/img/:imgpath')
+    async viewPhoto(@Param('imgpath') imagepath, @Res() res) {
+        return res.send(imagepath, { root: '.' });
+    }
+
+    //Download photo by item id
     @Get('/img/:imgid')
-    async seeUploadedFile(@Param('imgid') imageId, @Res() res){
+    async downloadFile(@Param('imgid') imageId, @Res() res){
         const path = await this._itemService.findImagePathId(imageId);
         return res.sendFile(path, { root: '.' });
     }

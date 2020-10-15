@@ -13,7 +13,8 @@
   <div class="select-footer">
     <button mat-flat-button color="primary" class="send-btn" (click)="fileInput.click()">
       <span>Upload</span>
-      <input #fileInput type="file"  style="display:none;" />
+
     </button>
+    <input #fileInput type="file" (change)="filesUploaded($event.target.files)" style="display:none;" />
   </div>
 </form>
