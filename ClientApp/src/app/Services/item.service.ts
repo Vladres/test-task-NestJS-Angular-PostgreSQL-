@@ -3,6 +3,7 @@ import { APIItemService } from './api/api-item.service';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Item } from '../Models/Item.model';
 import { DialogService } from './dialog.service';
+import { ModelRequest } from '../Models/model-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class ItemService {
 
   onGetItems: Subject<any>;
   onAddItem: Subject<any>;
+  onEditItems: Subject<any>;
+
 
   onItemsChanged: BehaviorSubject<Item[]>;
 
@@ -21,22 +24,46 @@ export class ItemService {
   ) {
     this.onGetItems = new Subject();
     this.onAddItem = new Subject();
+    this.onEditItems = new Subject();
 
     this.onItemsChanged = new BehaviorSubject([]);
 
     this.onGetItems.subscribe(request => {
-      if (request != null) {
-        this.getItems();
-      }
-    });
-
-
-    this.onAddItem.subscribe(request => {
-      this.addProduct(request)
       this.getItems();
     });
 
+    this.onEditItems.subscribe(async request => {
+      this.editItems(request);
+      await this.getItems();
+    });
+
+
+
+    this.onAddItem.subscribe(async request => {
+      this.addProduct(request)
+      await this.getItems();
+    });
+
     this.getItems();
+  }
+
+  private async getItems(): Promise<void> {
+    let response = await this._apiService.getItems();
+
+    if (response.success) {
+      this.onItemsChanged.next(response.model);
+      return;
+    }
+  }
+
+  private async editItems(request): Promise<void> {
+    let req = new ModelRequest<Item[]>({ model: request });
+    
+    let response = await this._apiService.editItems(req);
+    if (response.success) {
+      this.onItemsChanged.next(response.model);
+      return;
+    }
   }
 
   private async addProduct(request): Promise<void> {
@@ -51,12 +78,7 @@ export class ItemService {
     this._dialogService.showSnackBar("Не додано");
   }
 
-  private async getItems(): Promise<void> {
-    let response = await this._apiService.getItems();
 
-    if (response.success) {
-      this.onItemsChanged.next(response.model);
-      return;
-    }
-  }
+
+
 }

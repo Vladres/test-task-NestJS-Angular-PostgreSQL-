@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../../Models/Item.model';
 import { ItemService } from '../../Services/item.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'images-list',
@@ -10,11 +11,11 @@ import { ItemService } from '../../Services/item.service';
 })
 export class ImagesListComponent implements OnInit {
 
-
   cards: Item[] = [];
 
   constructor(
-    private _itemService: ItemService
+    private _itemService: ItemService,
+    private _http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -24,9 +25,12 @@ export class ImagesListComponent implements OnInit {
     })
   }
 
+  downloadAction(id: string) { 
+    this._http.get(`http://localhost:3000/items/img/${id}`);
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
-    console.log(event)
+    this._itemService.onEditItems.next(this.cards);
   }
 }

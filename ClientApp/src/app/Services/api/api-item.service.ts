@@ -37,6 +37,15 @@ export class APIItemService {
     return response;
   }
 
+  
+  @API<ApiResponse>()
+  public async editItems(request: ModelRequest<Item[]>): Promise<ModelResponse<Item[]>> {
+    let response = new ModelResponse<Item[]>();
+    console.log(request)
+    response.model = await this._httpClient.put<any>(`http://localhost:3000/items`, request.model).toPromise();
+    return response;
+  }
+
 
 
 }

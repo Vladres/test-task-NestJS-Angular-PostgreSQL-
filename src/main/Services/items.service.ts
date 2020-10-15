@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { Item } from '../../model/item.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm/repository/Repository';
+import { getConnection } from 'typeorm';
 
 @Injectable()
 export class ItemsService {
@@ -31,12 +32,34 @@ export class ItemsService {
     //Get item by :id
     async findImagePathId(id: string): Promise<string> {
         try {
-            const image = await this.itemsRepository.findOne({ id });
-            return image.image;
+            let image = await this.itemsRepository.findOne({ id });
+            if (image)
+                return image.image;
+            else
+                throw new BadRequestException("das");
         } catch (e) {
             return e.messege();
         }
 
+    }
+
+    //EditAll
+    async editAllItems(editItems: Item[]): Promise<Item[]> {
+        try {
+
+            await getConnection()
+                .createQueryBuilder()
+                .delete()
+                .from(Item)
+                .execute();
+
+            let data =  await this.itemsRepository.create(editItems);
+
+            return await this.itemsRepository.save(data);
+
+        } catch (e) {
+            return e.messege();
+        }
     }
 
     //Add item 

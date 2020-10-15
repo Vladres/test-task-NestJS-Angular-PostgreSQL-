@@ -1,20 +1,20 @@
 <form class="select-card">
-  <div class="select-header">
-    <div mat-button  (click)="fileInput.click()">
+  <div class="select-header" (click)="fileInput.click()">
+    <div mat-button>
       <mat-icon class="download-icon">add_circle_outline</mat-icon>
     </div>
   </div>
-  <div class="select-body">
+  <div class="select-body" >
     <div class="select-body-header">
       <span class="select-body-title"><strong>Ready when you are</strong></span>
       <span class="select-body-subtitle"><strong>Upload photo</strong></span>
     </div>
   </div>
   <div class="select-footer">
-    <button mat-flat-button color="primary" class="send-btn" (click)="fileInput.click()">
-      <span>Upload</span>
-
-    </button>
-    <input #fileInput type="file" (change)="filesUploaded($event.target.files)" style="display:none;" />
+    <a mat-flat-button color="primary" class="send-btn" (click)="fileInput.click()">
+      <span >Upload</span>
+    </a>
   </div>
+
+  <input #fileInput type="file" (change)="filesUploaded($event.target.files)" style="display:none" />
 </form>

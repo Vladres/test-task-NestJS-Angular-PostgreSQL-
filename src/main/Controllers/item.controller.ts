@@ -1,8 +1,8 @@
-import { Controller, Get, Param, Post, Req, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { Item } from '../../model/item.entity';
-import { ItemsService } from '../services/items.service';
 import { filenameFilter } from '../../utils/upload.utils';
+import { ItemsService } from '../services/items.service';
 
 
 @Controller('items')
@@ -36,16 +36,18 @@ export class ItemController {
         }
     }
 
-    //Download photo by item id
-    @Get('/img/:imgpath')
-    async viewPhoto(@Param('imgpath') imagepath, @Res() res) {
-        return res.send(imagepath, { root: '.' });
+    //Edit all
+    @Put()  
+    async editAllItems(@Body() body) {
+        return await this._itemService.editAllItems(body);
     }
-
+    
+     
     //Download photo by item id
     @Get('/img/:imgid')
-    async downloadFile(@Param('imgid') imageId, @Res() res){
+    async downloadFile(@Param('imgid') imageId, @Res() res) {
         const path = await this._itemService.findImagePathId(imageId);
+        console.log(path)
         return res.sendFile(path, { root: '.' });
     }
 }
