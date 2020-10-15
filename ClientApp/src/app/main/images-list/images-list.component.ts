@@ -8,7 +8,12 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class ImagesListComponent implements OnInit {
 
-  cards = [100, 100, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0];
+  cards = [
+    { name: "fasafs.jpg", image_url: "https://material.angular.io/assets/img/examples/shiba2.jpg" },
+    { name: "fasafs2.jpg", image_url: "https://material.angular.io/assets/img/examples/shiba2.jpg" },
+    { name: "fasafs3.jpg", image_url: "https://material.angular.io/assets/img/examples/shiba2.jpg" },
+    { name: "fasafs4.jpg", image_url: "https://material.angular.io/assets/img/examples/shiba2.jpg" },
+  ];
 
   constructor() { }
 
