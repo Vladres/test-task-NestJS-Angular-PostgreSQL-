@@ -1,0 +1,54 @@
+.select-card {
+  box-shadow: 0 0 7px rgba(0,0,0,0.5);
+  background-color: #fff;
+  min-height: 300px;
+  min-width: 300px;
+  border-radius: 15px;
+  padding: 1rem;
+
+  .select-header {
+    display: flex;
+    justify-content: center;
+    min-height: 100px;
+  }
+
+  .download-icon {
+    color: #c7c2b3;
+    width: 8rem;
+    font-size: 8rem;
+    margin-bottom: 2rem;
+  }
+
+  .select-body {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+
+    .select-body-header {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .select-body-title {
+      font-size: 1.5rem;
+    }
+
+    .select-body-subtitle {
+      text-align:center;
+    }
+  }
+
+  .select-footer {
+    display: flex;
+    justify-content: center;
+
+    .send-btn {
+      width: 90%;
+      border-radius: 10px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    margin-bottom: 2rem;
+  }
+}

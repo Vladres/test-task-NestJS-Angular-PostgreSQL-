@@ -32,8 +32,8 @@ a {
 
 //scrollbar
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -62,7 +62,7 @@ main-content {
   flex: 1;
   margin: 2rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
       flex-direction:column;
   }
 }

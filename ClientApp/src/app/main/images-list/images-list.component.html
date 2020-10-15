@@ -1,11 +1,11 @@
 <div class="list">
   <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="image-card" *ngFor="let item of cards" cdkDrag>
-        <img mat-card-image class="card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <div class="card-body">
-          <span class="card-title"><strong>Shiba Inu</strong></span>
-          <span class="card-subtitle"><strong>Shiba Inu</strong></span>
-        </div>
+    <div class="image-card" *ngFor="let item of cards" cdkDrag>
+      <img mat-card-image class="card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+      <div class="card-body">
+        <span class="card-title"><strong>Shiba Inu</strong></span>
+        <span class="card-subtitle"><strong>Shiba Inu</strong></span>
       </div>
     </div>
+  </div>
 </div>

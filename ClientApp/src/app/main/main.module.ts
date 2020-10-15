@@ -5,6 +5,9 @@ import { ImagesListComponent } from './images-list/images-list.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -18,12 +21,15 @@ const routes: Routes = [
   declarations: [
     ImagesListComponent,
     MainContentComponent,
+    UploadPhotoComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
     CommonModule,
     MatCardModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: []
 })
